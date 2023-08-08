@@ -1,0 +1,27 @@
+/* Styles that ONLY occur in Experiences */
+.companyAndRole {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.company {
+font-size: medium;
+margin: 0;
+}
+
+.role {
+font-size: small;
+margin: 0;
+}
+
+.description {
+    font-family: 'Calibri', sans-serif;
+    font-size: small;
+
+    text-align: left;
+}
+
+/* #techExperience {
+    display:none;
+} */
