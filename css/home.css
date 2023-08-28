@@ -1,9 +1,4 @@
-a {
-    /* width: 15vw;
-    aspect-ratio: 1/1; */
-    margin: 1%;
-}
-
+/* Styles that ONLY occur in Experiences */
 .union {
     position: relative;
 }
@@ -26,17 +21,18 @@ a {
 
 .chatTriangle {
     border-style: solid;
-    border-width: 2vw 0 0 2vh;
-    transform: rotate(-100deg);
     border-color: transparent transparent transparent #D4E5FF;
+    border-width: 2vw 0 0 2vh;
     position: absolute;
+    transform: rotate(-100deg);
     bottom: -6px;
 }
 
 .icons {
-    width: 15vw;
+    width: 10vw;
     aspect-ratio: 1 / 1;    
     border-radius: 25px;
+    margin: .75vw;
 
     perspective: 1000px; /* For 3D Effect */
     transition: transform 1s;
@@ -47,21 +43,19 @@ img {
     width: inherit;
 }
 
-.icons:hover {
+.icons:hover,
+.back {
     transform: rotateY(180deg);
-}
-
-.front, .back {
-    position: absolute;
-    width: 100%;
-    backface-visibility: hidden;
 }
 
 .front {
+    transform: translateY(0.45vh);
+}
+
+.front, .back {
+    width: 100%;
+    position: absolute;
+    backface-visibility: hidden;
     color: black;
 }
 
-.back{
-    color: black;
-    transform: rotateY(180deg);
-}

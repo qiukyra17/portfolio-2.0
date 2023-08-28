@@ -18,13 +18,15 @@ body {
 
 body,
 .row,
-.close {
+.close,
+.respondBox {
     display: flex;
     flex-direction: row;
 }
 
 a {
     text-decoration: none;
+    color: #282828;
 }
 
 p {
@@ -34,66 +36,68 @@ p {
 
 /* Menu Icons */
 #aboutMe {
-    background: #BFDCC2;
-}
-
-#technicalStack {
-    background: #BBC5CD;
-}
-
-#experiences {
-    background: #BBCDCA;
-}
-
-#contactMe {
-    background: #BFDCC2;
+    background: #B4D0B7;
 }
 
 #education {
+    background: #BBC5CD;
+}
+
+#technicalStack {
     background: #9FA7AD;
+}
+
+#experiences {
+    background: #BFDCC2;
 }
 
 #projects {
     background: #ADB8B6;
 }
 
+#contactMe {
+    background: #BBCDCA;
+}
+
 /* Small Icon Menu */
+.smallIcon, 
+.smallIconName {
+    margin: 1vw;
+}
+
 .smallIcon {
     width: 6vw;
     height: 6vw;
     aspect-ratio: 1/1;
-    border-radius: 25%;
-    margin: 1vw;
 
-    gap: 20px;
+    border-radius: 25%;
 }
 
 .smallIcon>img,
-.windowBar,
-.smallIcon:hover+.smallIconName {
+.smallIcon:hover+.smallIconName,
+.windowBar {
     width: inherit;
+
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.smallIconName {
-    display: none;
-    width: 25vw;
-    height: 6vw;
-    margin: 1vw;
-    border-radius: 1vw;
-    z-index: 1;
-    transform: translateX(9vw);
-    position: absolute;
 }
 
 .smallIcon:hover+.smallIconName {
     width: 20vw;
 }
 
-/* Chat Window */
+.smallIconName {
+    border-radius: 1vw;
 
+    display: none;
+    position: absolute;
+    transform: translateX(9vw);
+    z-index: 1;
+}
+
+
+/* Chat Window */
 .window,
 .chatWindow {
     display: flex;
@@ -111,14 +115,16 @@ p {
     background: #C1CBD3;
 }
 
+/* Chat Window Tool Bar */
 .windowBar {
     width: inherit;
     height: 5vh;
-    justify-content: flex-end;
+
     border-top-left-radius: 1vh;
     border-top-right-radius: 1vh;
     background: #6E7478;
 
+    justify-content: flex-end;
     position: absolute;
 }
 
@@ -133,7 +139,6 @@ p {
     background: white;
 }
 
-
 .material-symbols-outlined {
     color: white;
 }
@@ -144,12 +149,12 @@ p {
 
     margin-top: 6vh;
 
-    overflow: scroll;
-    overflow-x: hidden;
-
+    overflow-y: scroll;
+    scroll-behavior: smooth;
 }
 
-/* width */
+/* Scrollbar Styling */
+/* Width */
 ::-webkit-scrollbar {
     width: 1vw;
 }
@@ -157,32 +162,28 @@ p {
 /* Track */
 ::-webkit-scrollbar-track {
     background: transparent;
-
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
     background: #6E7478;
     border-radius: .25vw;
-
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: #6E7478;
-
 }
 
+/* Chat Bubbles Styling */
 .chatBubbleQuestion,
 .chatBubbleResponse,
 .chatBubbleRespondQuestion,
 .chatBubbleImg {
     width: fit-content;
     height: auto;
-
     border-radius: 2vw;
     padding: 1vw 1.5vw;
-
     margin: 1vw;
 }
 
@@ -190,10 +191,8 @@ p {
 .chatBubbleRespondQuestion {
     margin-right: 1vw;
     text-align: center;
-
-    align-self: flex-start;
-
     background: #D4E5FF;
+    align-self: flex-start;
 }
 
 .chatBubbleResponse,
@@ -201,19 +200,11 @@ p {
     max-width: 35vw;
     margin-left: 1vw;
     text-align: left;
-
+    background: #9FA7AD;
     align-self: flex-end;
 
-    background: #9FA7AD;
-
     opacity: 0;
-    /* Start with opacity 0 to hide the element */
     animation: fadeIn .5s ease .5s forwards;
-    /* Apply the animation */
-}
-
-.chatBubbleImg {
-    background: black;
 }
 
 @keyframes fadeIn {
@@ -223,23 +214,8 @@ p {
     }
 }
 
-.experienceWindow {
-    width: 60vw;
-    height: inherit;
-    margin-top: 6vh;
-    overflow: scroll;
-    overflow-x: hidden;
-}
-
-.experience {
-    width: auto;
-    margin: 1vw 1.5vw;
-    padding: 1vw 1.5vw;
-    border-radius: 2vw;
-
-    text-align: left;
-    background: #9FA7AD;
-
+.chatBubbleImg {
+    background: black;
 }
 
 .respondBox {
@@ -247,12 +223,8 @@ p {
     height: 24vh;
     margin-bottom: 2vh;
     border-radius: 1vh;
-
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-
     background: #F1F9FF;
+    align-items: flex-start;
 }
 
 .chatBubbleRespondQuestion {

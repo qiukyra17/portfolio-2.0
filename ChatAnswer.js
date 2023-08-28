@@ -1,5 +1,19 @@
 const chatWindow = document.querySelector(".chatWindow");
 
+function scrollToBottom() {
+    const targetScroll = chatWindow.scrollHeight - chatWindow.clientHeight;
+    let currentScroll = chatWindow.scrollTop;
+
+    const scrollInterval = setInterval(() => {
+        if (currentScroll < targetScroll) {
+            currentScroll += 2; // You can adjust the scrolling speed here
+            chatWindow.scrollTop = currentScroll;
+        } else {
+            clearInterval(scrollInterval);
+        }
+    }, 10); // Adjust the interval to control the smoothness
+}
+
 /**
  * Function to add reponse as user clicks on what they want to see
  * Every time an option is chosen, it will be removed from the screen
@@ -12,14 +26,14 @@ function addResponse(type) {
     let imgPath = "";
     let imgAlt = "";
 
-    //edu 
+    //Education 
     if (type === "highschool") {
         insideText = "For High School, I attended Fiorello H. LaGuardia Arts High School of Music & Arts, from 2011 - 2015. I majored in Fine Arts.";
     } if (type === "college") {
         insideText = "For College, I attended Fashion Institute of Technology, from 2015 - 2019. I graduated with both A.A.S and B.F.A, majoring in Interior Design.";
     }
 
-    //tech stack
+    //Technical Stack
     if (type === "frontend") {
         insideText = "I know Angular, JavaScript, HTML, and CSS. This portfolio was created with JavaScript, HTML, and CSS.";
     } if (type === "backend") {
@@ -28,7 +42,7 @@ function addResponse(type) {
         insideText = "I know Java leveraging Spring Boot, and SQL for database structure.";
     }
 
-    //projects
+    //Projects
     if (type === "deadbird") {
         insideText = "Deadbird Warranty is inspired by my time in retail at an outdoor gear brand, they had limited warranty on most proudct. Now, limited warranty sounded amazing until customers had to file a claim themelves, then the system showed its lack of a friendly user interface. The system did not allow customers to check on the status, or if customer decided that they no longer wanted the claim, and be able to delete it. This led to calls the retail stores of customers asking us, how long will this take, and if there was any update, which all we could do was apologize to the customer that we couldn't answer any of those questions. It really sucked to keep apologizing. In this app, I tackled just that, created an app where customers can file a warranty, where they will be given a warranty number, which they can use to look up the status or if they wish to no longer go on with the claim, they can also delete the claim.";
 
@@ -59,13 +73,16 @@ function addResponse(type) {
         img.className = "chatBubbleImg";
         img.src = imgPath;
         img.alt = imgAlt;
-        chatWindow.appendChild(img); // Add the image to the container
+        img.onload = () => {
+            chatWindow.appendChild(img); // Add the image to the container
+            scrollToBottom();
+        };
     } 
 
     document.getElementById(type).remove();
+    scrollToBottom();
 }
 
-// const respondBoxOptions = document.querySelector(".respondBox");
 const techRespondBox = document.querySelector("#techRespondBox");
 const experienceRespondBox = document.querySelector("#experienceRespondBox")
 
@@ -123,8 +140,6 @@ function checkToAddDialog(pageType) {
 }
 
 
-
-
 /** Experiences */
 
 // Function to create the role description
@@ -138,7 +153,7 @@ function createDescription(descriptionText) {
 // Function to create the experience div dynamically
 function createExperienceDiv(company, role, descriptions) {
     const experienceDiv = document.createElement("div");
-    experienceDiv.className = "experience";
+    experienceDiv.className = "chatBubbleResponse";
 
     const companyAndRoleDiv = document.createElement("div");
     companyAndRoleDiv.className = "companyAndRole";
@@ -192,6 +207,7 @@ function createExperience(type) {
         chatWindow.appendChild(revExperience);
 
         document.getElementById(type).remove();
+        scrollToBottom();
 
     } if (type === "retail") {
         const arcteryxDes = ["Managed stock room appearance and inventory levels in accordance to store requirements", "Conducted cycle counts in order to maintain accurate stock levels and minimize LP occurrences", "Received incoming product transfers and processed outgoing transfers to other stores and warehouse", "Worked in conjunction with the Store Managers in maintaining up-to-date visual standards and enforcing guidelines set by the VM department", "Greeted and conversed with customers to understand their product needs, answered/resolved any product-related questions, and guided them toward products that best fit their needs", "Educated new customers about ARC’TERYX using product knowledge and personal experience with the brand", "Partnered and worked with supervisors on store visual merchandising by attending calls with the VM team, following through with changes to the sales floor as discussed on the calls, and updated the sales floor in regard to current promotions", "Utilized the CEGID system to identify stock availability and close sales", "Maintained proper standards on the sales floor by ensuring all sizes and colors are represented as well as maintained cleanliness of the sales floor and stockroom"];
@@ -208,6 +224,8 @@ function createExperience(type) {
         chatWindow.appendChild(mujiExperience);
 
         document.getElementById(type).remove();
+        scrollToBottom();
+
 
     } if (type === "other") {
         const freelanceDes = ["Recolor garments to precisely match client requirements, guaranteeing accurate representation and visual appeal. Utilize advanced photo editing techniques and software tools to achieve desired color variations", "Conceptualized and design captivating collages and images for email marketing campaigns, effectively promoting upcoming products. Incorporating brand elements, product highlights, and compelling graphics", "Actively seek feedback from clients on completed work and promptly make adjustments to meet their expectations. Maintain a client-focused approach to ensure the highest level of satisfaction", "Demonstrate strong time management skills by effectively following tight deadlines. Thrive in a fast-paced environment and deliver high-quality work within designated timeframes"];
@@ -224,6 +242,7 @@ function createExperience(type) {
         chatWindow.appendChild(otjExperience);
         chatWindow.appendChild(swimExperience);
 
+        scrollToBottom();
     }
 }
 
