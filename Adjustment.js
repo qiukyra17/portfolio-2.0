@@ -2,7 +2,6 @@ const firstSet = document.getElementById("firstSet");
 const secondSet = document.getElementById("secondSet");
 const smallMainMenu = document.getElementById("smallMainMenu");
 
-
 let screenWidth = window.innerWidth;
 console.log("Screen width: " + screenWidth); // Debugging line
 
