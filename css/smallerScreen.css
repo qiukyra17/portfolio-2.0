@@ -1,0 +1,48 @@
+/* Smaller Screen */
+@media (max-width: 400px) {
+    body {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .helloChat {
+        width: 50vw;
+    }
+
+    .chatTriangle {
+        border-width: 4vw 0 0 1vh;
+        bottom: -4px;
+    }
+
+    .icons {
+        width: 20vw;
+        border-radius: 20px;
+        margin: 3vw;
+    }
+
+    #smallMainMenu{
+        transform: translateY(-6vw);
+    }
+
+    .smallIcon {
+        width: 15vw;
+        height: 15vw;
+    }
+
+    .window, .chatWindow {
+        width: 90vw;
+    }
+
+    .min {
+        width: 3vw;
+    }
+
+    .respondBox {
+        width: 85vw;
+        margin-bottom: 2vw;
+    }
+
+    .chatBubbleQuestion, .chatBubbleResponse, .chatBubbleRespondQuestion {
+        max-width: 75vw;
+    }
+}
