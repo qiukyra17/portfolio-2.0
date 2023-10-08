@@ -1,5 +1,5 @@
 /* Smaller Screen */
-@media (max-width: 390px) {
+@media (max-width: 1080px) {
     body {
         flex-direction: column;
         justify-content: center;
