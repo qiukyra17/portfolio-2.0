@@ -72,7 +72,7 @@ function addResponse(type) {
     }
 
     if (type === "chitchat") {
-        insideText = "chitcat is an anonymous forum application, where users can post a message for other users to see and comment on. They can chit-chat with each other. This project's aesthetics was inspired by the good old days of AIM messaging before texting or Facebook messaging was popular. I wanted to practice my CSS skills and be able to match how AIM looked.";
+        insideText = "chitchat is an anonymous forum application, where users can post a message for other users to see and comment on. They can chit-chat with each other. This project's aesthetics was inspired by the good old days of AIM messaging before texting or Facebook messaging was popular. I wanted to practice my CSS skills and be able to match how AIM looked.";
 
         imgPath = "resources/chitchat.png";
         imgAlt = "Image of chit chat";
