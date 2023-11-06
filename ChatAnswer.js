@@ -34,12 +34,6 @@ responseParagraphs.forEach(paragraph => {
     });
 });
 
-function addOption(type) {
-    if (type === "highschool") {
-        document.getElementById(type).append(chatWindow);
-    }
-}
-
 /**
  * Function to add reponse as user clicks on what they want to see
  * Every time an option is chosen, it will be removed from the screen
@@ -56,7 +50,6 @@ function addResponse(type, isUserResponse) {
     const paragraph = document.createElement("p");
     paragraph.className = ("chatBubbleResponse");
     let response = "";
-
 
     //For the new Img tags
     let imgPath = "";

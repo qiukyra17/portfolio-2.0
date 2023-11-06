@@ -210,7 +210,7 @@ p {
     align-self: flex-end;
 
     opacity: 0;
-    animation: fadeIn .5s ease .5s forwards;
+    animation: fadeIn 1s ease 1s forwards;
 }
 
 .chatBubbleExperienceResponse {
