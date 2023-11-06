@@ -154,7 +154,7 @@ p {
 /* Scrollbar Styling */
 /* Width */
 ::-webkit-scrollbar {
-    width: 1vw;
+    width: .5vw;
 }
 
 /* Track */
