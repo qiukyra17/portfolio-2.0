@@ -4,8 +4,10 @@ const chatWindow = document.querySelector(".chatWindow");
  * This function scrolls the chat down as the answers populate
  */
 function scrollToBottom() {
-    // To calculate the difference btw total scroll height if chatWind and the visible height
-    // The difference is the amount of content that is currently not visible at the bottom
+    /** 
+     * To calculate the difference btw total scroll height if chatWind and the visible height
+     * The difference is the amount of content that is currently not visible at the bottom
+     */
     const targetScroll = chatWindow.scrollHeight - chatWindow.clientHeight;
     // currentScroll represents where we are currently
     let currentScroll = chatWindow.scrollTop;
@@ -32,16 +34,29 @@ responseParagraphs.forEach(paragraph => {
     });
 });
 
+function addOption(type) {
+    if (type === "highschool") {
+        document.getElementById(type).append(chatWindow);
+    }
+}
+
 /**
  * Function to add reponse as user clicks on what they want to see
  * Every time an option is chosen, it will be removed from the screen
  * @param {*} type - type is to tell the function which set of texts we would like to add dynamically to our html
  */
-function addResponse(type) {
+function addResponse(type, isUserResponse) {
+
+    // To add the option that the user picked
+    const userPicked = document.createElement("p");
+    userPicked.className = "chatBubbleResponse";
+    let option = "";
+
     //For the new P tags
     const paragraph = document.createElement("p");
     paragraph.className = ("chatBubbleResponse");
-    let insideText = "";
+    let response = "";
+
 
     //For the new Img tags
     let imgPath = "";
@@ -49,37 +64,44 @@ function addResponse(type) {
 
     //Education Types 
     if (type === "highschool") {
-        insideText = "For High School, I attended Fiorello H. LaGuardia Arts High School of Music & Arts, from 2011 - 2015. I majored in Fine Arts.";
+        option = "High School";
+        response = "For High School, I attended Fiorello H. LaGuardia Arts High School of Music & Arts, from 2011 - 2015. I majored in Fine Arts.";
     } if (type === "college") {
-        insideText = "For College, I attended Fashion Institute of Technology, from 2015 - 2019. I graduated with both A.A.S and B.F.A, majoring in Interior Design.";
+        option = "College";
+        response = "For College, I attended Fashion Institute of Technology, from 2015 - 2019. I graduated with both A.A.S and B.F.A, majoring in Interior Design.";
     }
 
     //Technical Stack Types
     if (type === "frontend") {
-        insideText = "I know Angular, JavaScript, HTML, and CSS. This portfolio was created with JavaScript, HTML, and CSS.";
+        option = "Front End";
+        response = "I know Angular, JavaScript, HTML, and CSS. This portfolio was created with JavaScript, HTML, and CSS.";
     } if (type === "backend") {
-        insideText = "I know Java leveraging Spring Boot, and SQL for database structure.";
+        option = "Back End";
+        response = "I know Java leveraging Spring Boot, and SQL for database structure.";
     } if (type === "otherSkills") {
-        insideText = "I know Java leveraging Spring Boot, and SQL for database structure.";
+        response = "I know Java leveraging Spring Boot, and SQL for database structure.";
     }
 
     //Projects Types
     if (type === "deadbird") {
-        insideText = "Deadbird Warranty is inspired by my time in retail at an outdoor gear brand, they had limited warranty on most proudct. Now, limited warranty sounded amazing until customers had to file a claim themelves, then the system showed its lack of a friendly user interface. The system did not allow customers to check on the status, or if customer decided that they no longer wanted the claim, and be able to delete it. This led to calls the retail stores of customers asking us, how long will this take, and if there was any update, which all we could do was apologize to the customer that we couldn't answer any of those questions. It really sucked to keep apologizing. In this app, I tackled just that, created an app where customers can file a warranty, where they will be given a warranty number, which they can use to look up the status or if they wish to no longer go on with the claim, they can also delete the claim.";
+        option = "Deadbird Warranty App";
+        response = "Deadbird Warranty is inspired by my time in retail at an outdoor gear brand, they had limited warranty on most proudct. Now, limited warranty sounded amazing until customers had to file a claim themelves, then the system showed its lack of a friendly user interface. The system did not allow customers to check on the status, or if customer decided that they no longer wanted the claim, and be able to delete it. This led to calls the retail stores of customers asking us, how long will this take, and if there was any update, which all we could do was apologize to the customer that we couldn't answer any of those questions. It really sucked to keep apologizing. In this app, I tackled just that, created an app where customers can file a warranty, where they will be given a warranty number, which they can use to look up the status or if they wish to no longer go on with the claim, they can also delete the claim.";
 
         imgPath = "resources/deadbirdwarranty.png";
         imgAlt = "Image of Deadbird Main Menu";
     }
 
     if (type === "chitchat") {
-        insideText = "chitchat is an anonymous forum application, where users can post a message for other users to see and comment on. They can chit-chat with each other. This project's aesthetics was inspired by the good old days of AIM messaging before texting or Facebook messaging was popular. I wanted to practice my CSS skills and be able to match how AIM looked.";
+        option = "chit chat";
+        response = "chitchat is an anonymous forum application, where users can post a message for other users to see and comment on. They can chit-chat with each other. This project's aesthetics was inspired by the good old days of AIM messaging before texting or Facebook messaging was popular. I wanted to practice my CSS skills and be able to match how AIM looked.";
 
         imgPath = "resources/chitchat.png";
         imgAlt = "Image of chit chat";
     }
 
     if (type === "liamAndCo") {
-        insideText = "Liam & Co is an application I created for my sister, she wanted a simple to-do list. Something where she could split the house chores with my brother-in-law, and for them to be able to assign the chore, so they knew who was responsible. It's named Liam & Co, because my nephew's name and he is the CEO of the household. You do as he says."
+        option = "Liam & Co";
+        response = "Liam & Co is an application I created for my sister, she wanted a simple to-do list. Something where she could split the house chores with my brother-in-law, and for them to be able to assign the chore, so they knew who was responsible. It's named Liam & Co, because my nephew's name and he is the CEO of the household. You do as he says."
 
         imgPath = "resources/LiamAndCo - 2.png";
         imgAlt = "Image of Liam & Co To-Do List";
@@ -97,10 +119,12 @@ function addResponse(type) {
         };
     }
 
-    // Setting our new pargraph textContent with insideText
-    paragraph.textContent = insideText;
+    // Setting our new pargraph textContent with response\
+    userPicked.textContent = option;
+    paragraph.textContent = response;
 
     // Adding our paragraph to the chatWindow
+    chatWindow.appendChild(userPicked);
     chatWindow.appendChild(paragraph);
 
     // This removes the option that was clicked on by the user
@@ -110,9 +134,21 @@ function addResponse(type) {
     scrollToBottom();
 }
 
+
 // Below we are looking looking for our technical stack and experience page - as we need to check to see how many options are left within the respond box to be able to present the next set of options, this is to mimick how it is to chat to someone
 const techRespondBox = document.querySelector("#techRespondBox");
 const experienceRespondBox = document.querySelector("#experienceRespondBox")
+
+/**
+ * Funciton to check if all options have been picked, it will add new dialog
+ */
+function checkToAddDialog(pageType) {
+    if (pageType === "tech" && techRespondBox.childElementCount === 0) {
+        addNextBubble("tech");
+    } else if (pageType === "exp" && experienceRespondBox.childElementCount === 0) {
+        addNextBubble("exp");
+    }
+}
 
 /**
  * This event listener is to determine what page we are on, to add the appropriate dialog
@@ -127,17 +163,6 @@ document.addEventListener('click', function () {
         checkToAddDialog("exp");
     }
 });
-
-/**
- * Funciton to check if all options have been picked, it will add new dialog
- */
-function checkToAddDialog(pageType) {
-    if (pageType === "tech" && techRespondBox.childElementCount === 0) {
-        addNextBubble("tech");
-    } else if (pageType === "exp" && experienceRespondBox.childElementCount === 0) {
-        addNextBubble("exp");
-    }
-}
 
 /**
  * This is to create a new chat bubble, for when we have exhuasted the number of options
@@ -214,7 +239,7 @@ function createDescription(jobDescription) {
 function createExperienceDiv(company, role, descriptions) {
     // This div will create the overall chat bubble for each job description
     const experienceDiv = document.createElement("div");
-    experienceDiv.className = "chatBubbleResponse";
+    experienceDiv.className = "chatBubbleExperienceResponse";
 
     // This div is created that will encompass only the company and the role
     const companyAndRoleDiv = document.createElement("div");
@@ -255,7 +280,13 @@ let otherExperienceResponseAdded = false;
  * @param {*} type 
  */
 function createExperience(type) {
+    // To add the option that the user picked
+    const userPicked = document.createElement("p");
+    userPicked.className = "chatBubbleResponse";
+    let option = "";
+
     if (type === "tech") {
+        option = "Tech";
         const InfosysDescriptions = [
             "Developed full-stack applications using Java with Spring Boot framework, along with Lombok and JPA dependencies, to create RESTful APIs and integrated them with SQL databases",
             "Collaborated in a small team setting with agile methodology, completing sprints and participating in daily scrum meetings with the team lead to report on progress and plan future work"
@@ -271,6 +302,10 @@ function createExperience(type) {
             "Collaborated in a small team setting with agile methodology, completing sprints and participating in daily scrum meetings with the team lead to report on progress and plan future work"
         ];
 
+        // Adding our paragraph to the chatWindow
+        userPicked.textContent = option;
+        chatWindow.appendChild(userPicked);
+
         // Creating the chat bubbles by calling createExperienceDiv function
         const infoExperience = createExperienceDiv("Infosys", "Assosciate Software Engineer", InfosysDescriptions);
         const revExperience = createExperienceDiv("Revature", "Full Stack Software Engineer", RevDescriptions);
@@ -280,6 +315,7 @@ function createExperience(type) {
         chatWindow.appendChild(revExperience);
 
     } if (type === "retail") {
+        option = "Retail";
         const arcteryxDes = [
             "Managed stock room appearance and inventory levels in accordance to store requirements", "Conducted cycle counts in order to maintain accurate stock levels and minimize LP occurrences", "Received incoming product transfers and processed outgoing transfers to other stores and warehouse", "Worked in conjunction with the Store Managers in maintaining up-to-date visual standards and enforcing guidelines set by the VM department", "Greeted and conversed with customers to understand their product needs, answered/resolved any product-related questions, and guided them toward products that best fit their needs", "Educated new customers about ARC’TERYX using product knowledge and personal experience with the brand", "Partnered and worked with supervisors on store visual merchandising by attending calls with the VM team, following through with changes to the sales floor as discussed on the calls, and updated the sales floor in regard to current promotions", "Utilized the CEGID system to identify stock availability and close sales", "Maintained proper standards on the sales floor by ensuring all sizes and colors are represented as well as maintained cleanliness of the sales floor and stockroom"];
 
@@ -287,6 +323,10 @@ function createExperience(type) {
             "Performed store opening operations: balanced cash registers, informed associates of store promotions, daily goals, and messages from upper management as well as created the daily store schedule", "Managed store operations and oversaw part-time associates to ensure optimal performance", "Continued my duties as part-time sales associate as well",
             "Maintained a master list of product descriptions and prices in Excel and updated physical price displays as needed", "Implemented new processes in creating and printing price displays to ensure maximum efficiency", "Assisted customers with product knowledge, responded to customer inquiries, and utilized a POS system to close a sale", "Ensured all products were fully stocked and organized displays based on stock availability", "Assisted management to ensure a smooth store operation: maintain sales floor, office cleanliness, and organization"
         ];
+
+        // Adding our paragraph to the chatWindow
+        userPicked.textContent = option;
+        chatWindow.appendChild(userPicked);
 
         // Creating the chat bubbles by calling createExperienceDiv function
         const arcteryxExperience = createExperienceDiv("Arc'teryx", "Operations Lead + Product Guide", arcteryxDes);

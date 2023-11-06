@@ -1,7 +1,7 @@
 /* global styles*/
 
 /* Font Imports */
-@import url('https://fonts.googleapis.com/css2?family=Darumadrop+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 body {
     width: 100vw;
@@ -12,7 +12,7 @@ body {
 
     margin: 0;
 
-    font-family: 'Darumadrop One', sans-serif;
+    font-family: 'Roboto', sans-serif;
     color: #282828;
 }
 
@@ -60,7 +60,7 @@ p {
 }
 
 /* Small Icon Menu */
-.smallIcon, 
+.smallIcon,
 .smallIconName {
     margin: 1vw;
 }
@@ -92,10 +92,8 @@ p {
 
     display: none;
     position: absolute;
-    transform: translateX(9vw);
-    z-index: 1;
+    transform: translate(7vw, 1vw);
 }
-
 
 /* Chat Window */
 .window,
@@ -178,33 +176,45 @@ p {
 /* Chat Bubbles Styling */
 .chatBubbleQuestion,
 .chatBubbleResponse,
+.chatBubbleExperienceResponse,
 .chatBubbleRespondQuestion,
 .chatBubbleImg {
     width: fit-content;
     height: auto;
-    border-radius: 2vw;
+    border-radius: 1.5vw;
     padding: 1vw 1.5vw;
-    margin: 1vw;
+    margin: .25vw;
 }
 
 .chatBubbleQuestion,
 .chatBubbleRespondQuestion {
     margin-right: 1vw;
     text-align: center;
-    background: #D4E5FF;
+    /* background: #D4E5FF; */
+    background: white;
     align-self: flex-start;
 }
 
+.chatBubbleRespondQuestion {
+    background: #ace994;
+}
+
 .chatBubbleResponse,
+.chatBubbleExperienceResponse,
 .chatBubbleImg {
     max-width: 35vw;
     margin-left: 1vw;
     text-align: left;
-    background: #9FA7AD;
+    /* background: #9FA7AD; */
+    background: #ace994;
     align-self: flex-end;
 
     opacity: 0;
     animation: fadeIn .5s ease .5s forwards;
+}
+
+.chatBubbleExperienceResponse {
+    padding: 2vw 1.5vw;
 }
 
 @keyframes fadeIn {
