@@ -65,10 +65,10 @@ function addResponse(type, isUserResponse) {
     //Education Types 
     if (type === "highschool") {
         option = "High School";
-        response = "For High School, I attended Fiorello H. LaGuardia Arts High School of Music & Arts, from 2011 - 2015. I majored in Fine Arts.";
+        response = "I attended Fiorello H. LaGuardia Arts High School of Music & Arts, from 2011 - 2015. I majored in Fine Arts.";
     } if (type === "college") {
         option = "College";
-        response = "For College, I attended Fashion Institute of Technology, from 2015 - 2019. I graduated with both A.A.S and B.F.A, majoring in Interior Design.";
+        response = "I attended Fashion Institute of Technology, from 2015 - 2019. I graduated with both A.A.S and B.F.A, majoring in Interior Design.";
     }
 
     //Technical Stack Types
